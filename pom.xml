@@ -17,7 +17,8 @@
   <properties>
 
     <!-- Generic properties -->
-    <java.version>1.8</java.version>
+    <!-- 본인의 로컬환경에 설치되어 있는 jdk버전 지정   -->
+    <java.version>15</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -27,7 +28,8 @@
     <webjars-jquery.version>2.2.4</webjars-jquery.version>
     <wro4j.version>1.8.0</wro4j.version>
 
-    <jacoco.version>0.8.5</jacoco.version>
+    <!-- 0.8.5의 경우 jdk 15에서 에러발생함 -->
+    <jacoco.version>0.8.6</jacoco.version>
     <nohttp-checkstyle.version>0.0.4.RELEASE</nohttp-checkstyle.version>
     <spring-format.version>0.0.25</spring-format.version>
   </properties>
@@ -74,7 +76,8 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <scope>runtime</scope>
+      <!-- runtime일 경우 H2ServerConfig에서 org.h2.tools.Server를 찾을수 없다고 에러발생 -->
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
@@ -118,6 +121,14 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.16</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
